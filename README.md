@@ -5,7 +5,7 @@ $ ynpm install ac-table --save
 
 引入
 
-import {AcTable} from 'ac-table';
+import {AcTable} from '@yonyou/ac-table';
 
 ```
 
@@ -21,7 +21,7 @@ import {AcTable} from 'ac-table';
 |parent|参数object|object|
 |btns|操作组(如下)| array| --|
 
-* btns所有的属性
+## btns所有的属性
      |参数|说明|类型|默认值|
      |:--|:---:|:--:|---:|
      |label|文字|string|default|
