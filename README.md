@@ -1,18 +1,12 @@
-## ac-input-locale
-
->  多语言 Input 组件
-
+## ac-table-sh
 
 ```
-$ ynpm install @yonyou/ac-input-locale --save-dev
+$ ynpm install ac-table --save
 
 引入
 
-import AcInputLocale from '@yonyou/ac-input-locale';
+import {AcTable} from 'ac-table';
 
-样式引入
-
-import '@yonyou/ac-input-locale/build/ac-input-locale.css';
 ```
 
 ##效果
@@ -21,20 +15,23 @@ import '@yonyou/ac-input-locale/build/ac-input-locale.css';
 
 ## API
 
-|参数|说明|类型|返回值|
+|参数|说明|类型|默认值|
 |:--|:---:|:--:|---:|
-|className|容器样式|string| --- |
-|onSave|点击确定的钩子函数|fun|object |
-|onCancel|点击取消的钩子函数|fun|Object |
-|locale|系统语言|string |'zh-cn/en/tw'/ |
-|localeList|语言列表|Array| ---|
+|className|样式|string|default|
+|parent|参数object|object|
+|btns|操作组(如下)| array| --|
 
-       
+* btns所有的属性
+     |参数|说明|类型|默认值|
+     |:--|:---:|:--:|---:|
+     |label|文字|string|default|
+     |type|btns: next、last|string|
+     |func|回调函数| function| --|
 
 #### 开发调试
 
 ```sh
-$ cd @yonyou/ac-input-locale
+$ cd ac-table-sh
 $ npm install
 $ npm run dev
 ```

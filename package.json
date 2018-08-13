@@ -1,5 +1,5 @@
 {
-  "name": "@yonyou/ac-table-sh",
+  "name": "@yonyou/ac-table",
   "version": "0.0.1",
   "description": " ",
   "main": "./dist/index.js",
@@ -9,9 +9,9 @@
     "bundle": "webpack --progress --mode=development  && webpack --progress -p --output-filename ac-table-sh.min.js"
   },
   "bugs": {
-    "url": "https://github.com/shenzaifang/ac-table-sh/issues"
+    "url": "https://github.com/tinper-acs/ac-table/issues"
   },
-  "homepage": "https://github.com/shenzaifang/ac-table-sh#readme",
+  "homepage": "https://github.com/tinper-acs/ac-table#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shenzaifang/ac-table-sh.git"
