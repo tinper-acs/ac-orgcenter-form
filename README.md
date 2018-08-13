@@ -1,7 +1,7 @@
-## ac-table-sh
+## ac-table
 
 ```
-$ ynpm install ac-table --save
+$ ynpm install @yonyou/ac-table --save
 
 引入
 
@@ -31,7 +31,7 @@ import {AcTable} from '@yonyou/ac-table';
 #### 开发调试
 
 ```sh
-$ cd ac-table-sh
+$ cd ac-table
 $ npm install
 $ npm run dev
 ```
