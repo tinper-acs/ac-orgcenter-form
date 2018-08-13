@@ -22,11 +22,11 @@ import {AcTable} from '@yonyou/ac-table';
 |btns|操作组(如下)| array| --|
 
 ## btns所有的属性
-     |参数|说明|类型|默认值|
-     |:--|:---:|:--:|---:|
-     |label|文字|string|default|
-     |type|btns: next、last|string|
-     |func|回调函数| function| --|
+ |参数|说明|类型|默认值|
+ |:--|:---:|:--:|---:|
+ |label|文字|string|default|
+ |type|btns: next、last|string|
+ |func|回调函数| function| --|
 
 #### 开发调试
 
