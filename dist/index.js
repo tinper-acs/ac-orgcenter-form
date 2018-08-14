@@ -18,6 +18,8 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+require('./index.less');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -40,7 +42,10 @@ var AcTable = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (AcTable.__proto__ || Object.getPrototypeOf(AcTable)).call(this, props));
 
-        _this.state = { value: '' };
+        _this.state = {
+            currentDate: _this.getCurrTime(),
+            tableData: []
+        };
 
         _this.handleChange = _this.handleChange.bind(_this);
         _this.next = _this.next.bind(_this);
@@ -49,53 +54,186 @@ var AcTable = function (_Component) {
     }
 
     _createClass(AcTable, [{
+        key: 'getCurrTime',
+        value: function getCurrTime() {
+            var curTime = new Date();
+            var curDate = curTime.getFullYear() + '-' + format(curTime.getMonth() + 1) + '-' + format(curTime.getDate());
+
+            function format(num) {
+                var str = '';
+                if (Number(num) < 10) {
+                    str = '0';
+                }
+
+                return str + num;
+            }
+
+            return curDate;
+        }
+    }, {
+        key: 'getDataList',
+        value: function getDataList() {
+            var _this2 = this;
+
+            var url = 'http://10.6.195.142:8089/corehr-staff-process/corehr/orgchange/position/view?orgId=d3e7a795e0f54d2f99f9749f8123ec3d&includeSuborg=0';
+            fetch(url, {
+                method: 'get',
+                mode: 'cors'
+            }).then(function (res) {
+                if (res.ok) {
+                    res.text().then(function (data) {
+                        _this2.setState({
+                            tableData: data["data"]
+                        });
+                    });
+                }
+            }).catch(function (res) {
+                console.log(res.status);
+            });
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.getDataList();
+        }
+    }, {
         key: 'handleChange',
-        value: function handleChange(event) {
-            this.setState({ value: event.target.value });
+        value: function handleChange(newItem, propName, e) {
+            var val = e.target.value;
+            var tableData = this.state.tableData;
+            tableData.forEach(function (item) {
+                if (item.id === newItem.id) {
+                    item[propName] = val;
+                }
+            });
+
+            this.setState({ tableData: tableData });
         }
     }, {
         key: 'next',
         value: function next(call) {
-            var data = {
-                value: this.state.value
-            };
-            console.log('点击下一步');
+            var data = this.state.tableData;
             call(data);
         }
     }, {
         key: 'last',
         value: function last(call) {
-            var data = {
-                value: this.state.value
-            };
-            console.log('点击上一步');
+            var data = this.state.tableData;
             call(data);
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
+            var _this3 = this;
 
-            console.log("parent = ", this.props.parent);
             var listItems = this.props.btns;
+            var tableData = this.state.tableData;
             return _react2.default.createElement(
                 'div',
-                { className: this.props.className },
+                { className: this.props.className, id: 'ac-table' },
                 _react2.default.createElement(
                     'div',
-                    null,
-                    '\u59D3\u540D\uFF1A',
-                    _react2.default.createElement('input', { type: 'text', value: this.state.value, onChange: this.handleChange })
+                    { className: 'table-box' },
+                    _react2.default.createElement(
+                        'table',
+                        null,
+                        _react2.default.createElement(
+                            'thead',
+                            null,
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'th',
+                                    null,
+                                    '\u539F\u804C\u4F4D\u7F16\u7801'
+                                ),
+                                _react2.default.createElement(
+                                    'th',
+                                    null,
+                                    '\u539F\u804C\u4F4D\u540D\u79F0'
+                                ),
+                                _react2.default.createElement(
+                                    'th',
+                                    null,
+                                    '\u65B0\u804C\u4F4D\u7F16\u7801'
+                                ),
+                                _react2.default.createElement(
+                                    'th',
+                                    null,
+                                    '\u65B0\u804C\u4F4D\u540D\u79F0'
+                                ),
+                                _react2.default.createElement(
+                                    'th',
+                                    null,
+                                    '\u6240\u5C5E\u90E8\u95E8'
+                                ),
+                                _react2.default.createElement(
+                                    'th',
+                                    null,
+                                    '\u521B\u5EFA\u65E5\u671F'
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'tbody',
+                            null,
+                            tableData.map(function (item, i) {
+                                return _react2.default.createElement(
+                                    'tr',
+                                    { key: i },
+                                    _react2.default.createElement(
+                                        'td',
+                                        { className: 'staff-code' },
+                                        item.old_postcode
+                                    ),
+                                    _react2.default.createElement(
+                                        'td',
+                                        null,
+                                        item.old_postname
+                                    ),
+                                    _react2.default.createElement(
+                                        'td',
+                                        null,
+                                        _react2.default.createElement('input', { type: 'text', value: item.new_postcode, onChange: function onChange(e) {
+                                                return _this3.handleChange(item, 'new_postcode', e);
+                                            } })
+                                    ),
+                                    _react2.default.createElement(
+                                        'td',
+                                        null,
+                                        _react2.default.createElement('input', { type: 'text', value: item.new_postname, onChange: function onChange(e) {
+                                                return _this3.handleChange(item, 'new_postname', e);
+                                            } })
+                                    ),
+                                    _react2.default.createElement(
+                                        'td',
+                                        null,
+                                        item.deptid_showname
+                                    ),
+                                    _react2.default.createElement(
+                                        'td',
+                                        null,
+                                        _this3.state.currentDate
+                                    )
+                                );
+                            })
+                        )
+                    )
                 ),
-                listItems.map(function (item, i) {
-                    return _react2.default.createElement(
-                        'button',
-                        { key: i, onClick: function onClick() {
-                                return _this2[item.type](item.func);
-                            } },
-                        item.label
-                    );
-                })
+                _react2.default.createElement(
+                    'footer',
+                    { className: 'footer' },
+                    listItems.map(function (item, i) {
+                        return _react2.default.createElement(
+                            'button',
+                            { key: i, className: item.type, onClick: function onClick() {
+                                    return _this3[item.type](item.func);
+                                } },
+                            item.label
+                        );
+                    })
+                )
             );
         }
     }]);
