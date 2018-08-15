@@ -2,7 +2,7 @@ import  React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import './index.less';
-
+const urlHost = 'http://10.6.195.142:8089';
 const propTypes = {
     className: PropTypes.string,
     parent:PropTypes.object, //
@@ -46,7 +46,7 @@ class AcTable extends Component {
     }
     getDataList(){
         // let url = 'http://10.6.195.142:8089/corehr/orgchange/position/view?orgId=c02f33880d9d4866903e237245b9e643&includeSuborg=0';
-        let url = 'http://10.6.195.142:8089/corehr-staff-process/corehr/orgchange/position/view?orgId=d3e7a795e0f54d2f99f9749f8123ec3d&includeSuborg=0';
+        let url = `${urlHost}/corehr-staff-process/corehr/orgchange/position/view?orgId=${this.props.parent.orgId}&includeSuborg=${this.props.parent.includeSuborg}`;
         fetch(url, {
             method: 'get',
             mode:'cors'

@@ -21,6 +21,12 @@ import {AcTable} from '@yonyou/ac-table';
 |parent|参数object|object|
 |btns|操作组(如下)| array| --|
 
+## parent所有的属性
+ |参数|说明|类型|默认值|
+ |:--|:---:|:--:|---:|
+ |orgId|组织id|string|default|
+ |includeSuborg|0: 加载【合并组织】时候的【职位列表】; 1:加载【跨公司转移】时的【职位列表】|number|
+
 ## btns所有的属性
  |参数|说明|类型|默认值|
  |:--|:---:|:--:|---:|

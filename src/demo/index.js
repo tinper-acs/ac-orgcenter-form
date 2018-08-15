@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './demo.less';
-import '../../build/ac-input-locale.css';
 import AcTable from '../index';
 var btns = [
     {
@@ -18,7 +17,7 @@ var btns = [
             console.log('----------',data)
         }
     }
-]
+];
 class Demo extends Component {
     constructor(props){
         super(props);
@@ -30,7 +29,8 @@ class Demo extends Component {
 
     render () {
         let parent = {
-            data:true
+            orgId:'d3e7a795e0f54d2f99f9749f8123ec3d',
+            includeSuborg:0
         };
         let className = 'clcclclclclcl';
         return (
