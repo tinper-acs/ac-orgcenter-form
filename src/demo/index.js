@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './demo.less';
 import AcTable from '../index';
+import '../index.less'
 var btns = [
     {
         'label':'上一步',

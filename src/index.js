@@ -1,7 +1,7 @@
 import  React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import './index.less';
+
 const urlHost = 'http://10.6.195.142:8089';
 const propTypes = {
     className: PropTypes.string,

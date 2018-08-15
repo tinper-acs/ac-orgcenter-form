@@ -12,11 +12,11 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 require('./demo.less');
 
-require('../../build/ac-input-locale.css');
-
 var _index = require('../index');
 
 var _index2 = _interopRequireDefault(_index);
+
+require('../index.less');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -59,7 +59,8 @@ var Demo = function (_Component) {
         key: 'render',
         value: function render() {
             var parent = {
-                data: true
+                orgId: 'd3e7a795e0f54d2f99f9749f8123ec3d',
+                includeSuborg: 0
             };
             var className = 'clcclclclclcl';
             return _react2.default.createElement(

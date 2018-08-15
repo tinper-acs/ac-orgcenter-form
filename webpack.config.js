@@ -6,8 +6,8 @@ module.exports = {
     entry: ['./src/index.js', './src/index.less'],
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'ac-table-sh.js',
-        library: 'ac-table-sh',
+        filename: 'ac-table.js',
+        library: 'ac-table',
         libraryTarget: 'umd'
     },
     module: {
@@ -67,7 +67,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "ac-table-sh.css"
+            filename: "ac-table.css"
         })
     ]
 }

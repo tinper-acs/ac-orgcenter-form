@@ -1,12 +1,12 @@
 {
   "name": "@yonyou/ac-table",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": " ",
   "main": "./dist/index.js",
   "scripts": {
     "dev": "uba server",
     "build": "rm -rf build && rm -rf lib && rm -rf dist && babel src -d dist --no-comments",
-    "bundle": "webpack --progress --mode=development  && webpack --progress -p --output-filename ac-table-sh.min.js"
+    "bundle": "webpack --progress --mode=development  && webpack --progress -p --output-filename ac-table.min.js"
   },
   "bugs": {
     "url": "https://github.com/tinper-acs/ac-table/issues"

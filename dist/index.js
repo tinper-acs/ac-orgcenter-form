@@ -18,8 +18,6 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-require('./index.less');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28,6 +26,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var urlHost = 'http://10.6.195.142:8089';
 var propTypes = {
     className: _propTypes2.default.string,
     parent: _propTypes2.default.object,
@@ -75,7 +74,7 @@ var AcTable = function (_Component) {
         value: function getDataList() {
             var _this2 = this;
 
-            var url = 'http://10.6.195.142:8089/corehr-staff-process/corehr/orgchange/position/view?orgId=d3e7a795e0f54d2f99f9749f8123ec3d&includeSuborg=0';
+            var url = urlHost + '/corehr-staff-process/corehr/orgchange/position/view?orgId=' + this.props.parent.orgId + '&includeSuborg=' + this.props.parent.includeSuborg;
             fetch(url, {
                 method: 'get',
                 mode: 'cors'

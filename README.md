@@ -7,6 +7,10 @@ $ ynpm install @yonyou/ac-table --save
 
 import {AcTable} from '@yonyou/ac-table';
 
+样式引入
+
+import '@yonyou/ac-table/build/ac-table.css';
+
 ```
 
 ##效果
