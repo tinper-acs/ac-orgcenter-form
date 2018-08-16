@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './demo.less';
-import AcTable from '../index';
+import AcOrgcenterForm from '../index';
 import '../index.less'
 var btns = [
     {
@@ -36,7 +36,7 @@ class Demo extends Component {
         let className = 'clcclclclclcl';
         return (
             <div>
-                <AcTable btns={btns} parent={parent} className={className}/>
+                <AcOrgcenterForm btns={btns} parent={parent} className={className}/>
             </div>
         )
     }

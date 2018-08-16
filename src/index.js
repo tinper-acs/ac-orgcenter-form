@@ -8,7 +8,7 @@ const propTypes = {
     parent:PropTypes.object, //
     btns:PropTypes.array,
 };
-class AcTable extends Component {
+class AcOrgcenterForm extends Component {
     static defaultProps = {
         className: '',
         parent: {},
@@ -95,7 +95,7 @@ class AcTable extends Component {
         const listItems = this.props.btns;
         const tableData = this.state.tableData;
         return (
-            <div className={this.props.className} id='ac-table'>
+            <div className={this.props.className} id='ac-orgcenter-form'>
                 <div className='table-box'>
                     <table>
                         <thead>
@@ -144,6 +144,6 @@ class AcTable extends Component {
     }
 }
 
-AcTable.propTypes = propTypes;
+AcOrgcenterForm.propTypes = propTypes;
 
-export default AcTable;
+export default AcOrgcenterForm;

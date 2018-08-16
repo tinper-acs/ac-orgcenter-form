@@ -33,13 +33,13 @@ var propTypes = {
     btns: _propTypes2.default.array
 };
 
-var AcTable = function (_Component) {
-    _inherits(AcTable, _Component);
+var AcOrgcenterForm = function (_Component) {
+    _inherits(AcOrgcenterForm, _Component);
 
-    function AcTable(props) {
-        _classCallCheck(this, AcTable);
+    function AcOrgcenterForm(props) {
+        _classCallCheck(this, AcOrgcenterForm);
 
-        var _this = _possibleConstructorReturn(this, (AcTable.__proto__ || Object.getPrototypeOf(AcTable)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (AcOrgcenterForm.__proto__ || Object.getPrototypeOf(AcOrgcenterForm)).call(this, props));
 
         _this.state = {
             currentDate: _this.getCurrTime(),
@@ -52,7 +52,7 @@ var AcTable = function (_Component) {
         return _this;
     }
 
-    _createClass(AcTable, [{
+    _createClass(AcOrgcenterForm, [{
         key: 'getCurrTime',
         value: function getCurrTime() {
             var curTime = new Date();
@@ -129,7 +129,7 @@ var AcTable = function (_Component) {
             var tableData = this.state.tableData;
             return _react2.default.createElement(
                 'div',
-                { className: this.props.className, id: 'ac-table' },
+                { className: this.props.className, id: 'ac-orgcenter-form' },
                 _react2.default.createElement(
                     'div',
                     { className: 'table-box' },
@@ -237,16 +237,16 @@ var AcTable = function (_Component) {
         }
     }]);
 
-    return AcTable;
+    return AcOrgcenterForm;
 }(_react.Component);
 
-AcTable.defaultProps = {
+AcOrgcenterForm.defaultProps = {
     className: '',
     parent: {},
     btns: []
 };
 
 
-AcTable.propTypes = propTypes;
+AcOrgcenterForm.propTypes = propTypes;
 
-exports.default = AcTable;
+exports.default = AcOrgcenterForm;

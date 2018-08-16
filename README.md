@@ -1,15 +1,15 @@
-## ac-table
+## ac-orgcenter-form
 
 ```
-$ ynpm install @yonyou/ac-table --save
+$ ynpm install @yonyou/ac-orgcenter-form --save
 
 引入
 
-import {AcTable} from '@yonyou/ac-table';
+import {AcOrgcenterForm} from '@yonyou/ac-orgcenter-form';
 
 样式引入
 
-import '@yonyou/ac-table/build/ac-table.css';
+import '@yonyou/ac-orgcenter-form/build/ac-orgcenter-form.css';
 
 ```
 
@@ -41,7 +41,7 @@ import '@yonyou/ac-table/build/ac-table.css';
 #### 开发调试
 
 ```sh
-$ cd ac-table
+$ cd ac-orgcenter-form
 $ npm install
 $ npm run dev
 ```

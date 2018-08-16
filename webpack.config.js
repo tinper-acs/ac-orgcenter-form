@@ -6,8 +6,8 @@ module.exports = {
     entry: ['./src/index.js', './src/index.less'],
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'ac-table.js',
-        library: 'ac-table',
+        filename: 'ac-orgcenter-form.js',
+        library: 'ac-orgcenter-form',
         libraryTarget: 'umd'
     },
     module: {
@@ -67,7 +67,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "ac-table.css"
+            filename: "ac-orgcenter-form.css"
         })
     ]
 }
