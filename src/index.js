@@ -2,23 +2,23 @@ import  React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
-const urlHost = 'http://10.6.195.142:8089';
 const propTypes = {
     className: PropTypes.string,
     parent:PropTypes.object, //
-    btns:PropTypes.array,
+    btns:PropTypes.array
 };
 class AcOrgcenterForm extends Component {
     static defaultProps = {
         className: '',
-        parent: {},
+        parent: {
+            tableData:[]
+        },
         btns: []
     };
     constructor(props) {
         super(props);
         this.state = {
-            currentDate: this.getCurrTime(),
-            tableData: []
+            currentDate: this.getCurrTime()
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -44,56 +44,29 @@ class AcOrgcenterForm extends Component {
         //     currentDate: curDate
         // })
     }
-    getDataList(){
-        // let url = 'http://10.6.195.142:8089/corehr/orgchange/position/view?orgId=c02f33880d9d4866903e237245b9e643&includeSuborg=0';
-        let url = `${urlHost}/corehr-staff-process/corehr/orgchange/position/view?orgId=${this.props.parent.orgId}&includeSuborg=${this.props.parent.includeSuborg}`;
-        fetch(url, {
-            method: 'get',
-            mode:'cors'
-            // headers: {
-            //     'Content-Type': 'application/json'
-            // },
-            // body: JSON.stringify(data)
-        }).then((res)=>{
-            if(res.ok){
-                res.text().then((data)=>{
-                    this.setState(
-                        {
-                            tableData:data["data"]
-                        }
-                    );
-                    // console.log(JSON.parse(data));
-                })
-            }
-        }).catch((res)=>{
-            console.log(res.status);
-        });
-    }
     componentDidMount(){
-        this.getDataList();
+        // this.getDataList();
     }
     handleChange(newItem,propName,e) {
         const val = e.target.value;
-        let tableData = this.state.tableData;
+        let tableData = this.props.parent.tableData;
         tableData.forEach((item)=>{
             if(item.id===newItem.id){
                 item[propName] = val
             }
         });
-
-        this.setState({tableData: tableData});
     }
     next(call){
-        const data = this.state.tableData;
+        const data = this.props.parent.tableData;
         call(data);
     }
     last(call){
-        const data = this.state.tableData;
+        const data = this.props.parent.tableData;
         call(data)
     }
     render() {
         const listItems = this.props.btns;
-        const tableData = this.state.tableData;
+        const tableData = this.props.parent.tableData;
         return (
             <div className={this.props.className} id='ac-orgcenter-form'>
                 <div className='table-box'>

@@ -28,8 +28,18 @@ import '@yonyou/ac-orgcenter-form/build/ac-orgcenter-form.css';
 ## parent所有的属性
  |参数|说明|类型|默认值|
  |:--|:---:|:--:|---:|
- |orgId|组织id|string|default|
- |includeSuborg|0: 加载【合并组织】时候的【职位列表】; 1:加载【跨公司转移】时的【职位列表】|number|
+ |tableData|table中列表数据|array|[]|
+
+## tableData所有的属性
+ |参数|说明|类型|默认值|
+ |:--|:---:|:--:|---:|
+ |old_postname|原职位名称|string|null|
+ |new_postcode|新职位编码|string|null|
+ |deptid_showname|所属部门|string|null|
+ |old_postcode|原职位编码|string|null|
+ |deptid|table中列表数据|string|null|
+ |new_postname|新职位名称|string|null|
+ |id|table中列表数据|string|null|
 
 ## btns所有的属性
  |参数|说明|类型|默认值|
