@@ -40,6 +40,26 @@ var btns = [{
     }
 }];
 
+var getQuery = function getQuery(url) {
+    if (typeof url !== 'string') return;
+    var queryObj = {};
+    var reg1 = /([^?&=#]+)=([^?&=#]*)/g;
+    url.replace(reg1, function () {
+        for (var _len = arguments.length, arg = Array(_len), _key = 0; _key < _len; _key++) {
+            arg[_key] = arguments[_key];
+        }
+
+        queryObj[arg[1]] = arg[2];
+    });
+    return queryObj;
+};
+
+var setCookie = function setCookie(name, value, expiredays) {
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + expiredays);
+    document.cookie = name + '=' + escape(value) + (expiredays == null ? '' : ';expires=' + exdate.toGMTString());
+};
+
 var Demo = function (_Component) {
     _inherits(Demo, _Component);
 
@@ -59,8 +79,15 @@ var Demo = function (_Component) {
         key: 'render',
         value: function render() {
             var parent = {
-                orgId: 'd3e7a795e0f54d2f99f9749f8123ec3d',
-                includeSuborg: 0
+                tableData: [{
+                    "old_postname": "研发总部总经理",
+                    "new_postcode": "",
+                    "deptid_showname": "研发总部",
+                    "old_postcode": "0101",
+                    "deptid": "212a6212cdbd42e9a51a8d71cfa9cc72",
+                    "new_postname": "研发总部总经理",
+                    "id": "2eb59a6205834713b2aa95b08975a64e"
+                }]
             };
             var className = 'clcclclclclcl';
             return _react2.default.createElement(

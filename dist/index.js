@@ -26,7 +26,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var urlHost = 'http://10.6.195.142:8089';
 var propTypes = {
     className: _propTypes2.default.string,
     parent: _propTypes2.default.object,
@@ -42,8 +41,7 @@ var AcOrgcenterForm = function (_Component) {
         var _this = _possibleConstructorReturn(this, (AcOrgcenterForm.__proto__ || Object.getPrototypeOf(AcOrgcenterForm)).call(this, props));
 
         _this.state = {
-            currentDate: _this.getCurrTime(),
-            tableData: []
+            currentDate: _this.getCurrTime()
         };
 
         _this.handleChange = _this.handleChange.bind(_this);
@@ -70,63 +68,38 @@ var AcOrgcenterForm = function (_Component) {
             return curDate;
         }
     }, {
-        key: 'getDataList',
-        value: function getDataList() {
-            var _this2 = this;
-
-            var url = urlHost + '/corehr-staff-process/corehr/orgchange/position/view?orgId=' + this.props.parent.orgId + '&includeSuborg=' + this.props.parent.includeSuborg;
-            fetch(url, {
-                method: 'get',
-                mode: 'cors'
-            }).then(function (res) {
-                if (res.ok) {
-                    res.text().then(function (data) {
-                        _this2.setState({
-                            tableData: data["data"]
-                        });
-                    });
-                }
-            }).catch(function (res) {
-                console.log(res.status);
-            });
-        }
-    }, {
         key: 'componentDidMount',
-        value: function componentDidMount() {
-            this.getDataList();
-        }
+        value: function componentDidMount() {}
     }, {
         key: 'handleChange',
         value: function handleChange(newItem, propName, e) {
             var val = e.target.value;
-            var tableData = this.state.tableData;
+            var tableData = this.props.parent.tableData;
             tableData.forEach(function (item) {
                 if (item.id === newItem.id) {
                     item[propName] = val;
                 }
             });
-
-            this.setState({ tableData: tableData });
         }
     }, {
         key: 'next',
         value: function next(call) {
-            var data = this.state.tableData;
+            var data = this.props.parent.tableData;
             call(data);
         }
     }, {
         key: 'last',
         value: function last(call) {
-            var data = this.state.tableData;
+            var data = this.props.parent.tableData;
             call(data);
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this2 = this;
 
             var listItems = this.props.btns;
-            var tableData = this.state.tableData;
+            var tableData = this.props.parent.tableData;
             return _react2.default.createElement(
                 'div',
                 { className: this.props.className, id: 'ac-orgcenter-form' },
@@ -195,14 +168,14 @@ var AcOrgcenterForm = function (_Component) {
                                         'td',
                                         null,
                                         _react2.default.createElement('input', { type: 'text', value: item.new_postcode, onChange: function onChange(e) {
-                                                return _this3.handleChange(item, 'new_postcode', e);
+                                                return _this2.handleChange(item, 'new_postcode', e);
                                             } })
                                     ),
                                     _react2.default.createElement(
                                         'td',
                                         null,
                                         _react2.default.createElement('input', { type: 'text', value: item.new_postname, onChange: function onChange(e) {
-                                                return _this3.handleChange(item, 'new_postname', e);
+                                                return _this2.handleChange(item, 'new_postname', e);
                                             } })
                                     ),
                                     _react2.default.createElement(
@@ -213,7 +186,7 @@ var AcOrgcenterForm = function (_Component) {
                                     _react2.default.createElement(
                                         'td',
                                         null,
-                                        _this3.state.currentDate
+                                        _this2.state.currentDate
                                     )
                                 );
                             })
@@ -227,7 +200,7 @@ var AcOrgcenterForm = function (_Component) {
                         return _react2.default.createElement(
                             'button',
                             { key: i, className: item.type, onClick: function onClick() {
-                                    return _this3[item.type](item.func);
+                                    return _this2[item.type](item.func);
                                 } },
                             item.label
                         );
@@ -242,7 +215,9 @@ var AcOrgcenterForm = function (_Component) {
 
 AcOrgcenterForm.defaultProps = {
     className: '',
-    parent: {},
+    parent: {
+        tableData: []
+    },
     btns: []
 };
 
