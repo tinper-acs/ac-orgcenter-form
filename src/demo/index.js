@@ -19,7 +19,36 @@ var btns = [
         }
     }
 ];
+/**
+ *
+ * @param url 目标地址
+ * @returns {{Object}} 返回提取的查询参数
+ */
+const getQuery = url => {
+    if (typeof (url) !== 'string') return;
+    let queryObj = {};
+    const reg1 = /([^?&=#]+)=([^?&=#]*)/g;
+    url.replace(reg1, (...arg) => {
+        queryObj[arg[1]] = arg[2]
+    });
+    return queryObj
+};
+
+/**
+ * @param name cookie名
+ * @param value 值
+ * @param expiredays 期限
+ * @returns {{Object}} 返回提取的查询参数
+ */
+
+const setCookie = (name, value, expiredays) => {
+    let exdate = new Date();
+    exdate.setDate(exdate.getDate() + expiredays);
+    document.cookie = name + '=' + escape(value) + ((expiredays == null) ? '' : ';expires=' + exdate.toGMTString());
+};
+
 class Demo extends Component {
+
     constructor(props){
         super(props);
         this.state = {
@@ -29,10 +58,27 @@ class Demo extends Component {
     }
 
     render () {
+        let wb_at = null;
+        let url = window.location.href;
+        if (url.indexOf('?') !== -1) {
+            let cookieObj = getQuery(url);
+            if (cookieObj.wb_at) {
+                setCookie('wb_at', cookieObj.wb_at, 365);
+                wb_at = cookieObj.wb_at;
+            }
+        }
+        let urlHost = null;
+        // let urlHost = 'http://10.6.211.224:8090';
         let parent = {
-            orgId:'d3e7a795e0f54d2f99f9749f8123ec3d',
-            includeSuborg:0
+            orgId:'212a6212cdbd42e9a51a8d71cfa9cc72',
+            includeSuborg:false
         };
+        if(wb_at){
+            parent['wb_at'] = wb_at;
+        }
+        if(urlHost){
+            parent['urlHost'] = urlHost;
+        }
         let className = 'clcclclclclcl';
         return (
             <div>

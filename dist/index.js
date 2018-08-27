@@ -26,11 +26,35 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var urlHost = 'http://10.6.195.142:8089';
+var urlHost = 'http://hrcloud.yyuap.com';
 var propTypes = {
     className: _propTypes2.default.string,
-    parent: _propTypes2.default.object,
+    parent: function parent(props, propName) {
+        var _parent = props[propName];
+        if (!_parent.orgId) {
+            _parent.orgId = '';
+        }
+        if (!_parent.includeSuborg) {
+            _parent.includeSuborg = false;
+        }
+        if (!_parent.urlHost) {
+            _parent.urlHost = urlHost;
+        }
+        if (!_parent.wb_at) {
+            _parent.wb_at = '';
+        }
+    },
     btns: _propTypes2.default.array
+};
+var defaultProps = {
+    className: '',
+    parent: {
+        orgId: '',
+        includeSuborg: false,
+        urlHost: 'http://hrcloud.yyuap.com',
+        wb_at: ''
+    },
+    btns: []
 };
 
 var AcOrgcenterForm = function (_Component) {
@@ -39,17 +63,17 @@ var AcOrgcenterForm = function (_Component) {
     function AcOrgcenterForm(props) {
         _classCallCheck(this, AcOrgcenterForm);
 
-        var _this = _possibleConstructorReturn(this, (AcOrgcenterForm.__proto__ || Object.getPrototypeOf(AcOrgcenterForm)).call(this, props));
+        var _this2 = _possibleConstructorReturn(this, (AcOrgcenterForm.__proto__ || Object.getPrototypeOf(AcOrgcenterForm)).call(this, props));
 
-        _this.state = {
-            currentDate: _this.getCurrTime(),
+        _this2.state = {
+            currentDate: _this2.getCurrTime(),
             tableData: []
         };
 
-        _this.handleChange = _this.handleChange.bind(_this);
-        _this.next = _this.next.bind(_this);
-        _this.last = _this.last.bind(_this);
-        return _this;
+        _this2.handleChange = _this2.handleChange.bind(_this2);
+        _this2.next = _this2.next.bind(_this2);
+        _this2.last = _this2.last.bind(_this2);
+        return _this2;
     }
 
     _createClass(AcOrgcenterForm, [{
@@ -72,23 +96,33 @@ var AcOrgcenterForm = function (_Component) {
     }, {
         key: 'getDataList',
         value: function getDataList() {
-            var _this2 = this;
+            var wb_at = '';
+            if (this.props.parent.wb_at && this.props.parent.wb_at.length > 0) {
+                wb_at = '&wb_at=' + this.props.parent.wb_at;
+            }
+            var url = this.props.parent.urlHost + '/corehr-org/corehr/orgchange/position/view?orgId=' + this.props.parent.orgId + '&includeSuborg=' + this.props.parent.includeSuborg + wb_at;
 
-            var url = urlHost + '/corehr-staff-process/corehr/orgchange/position/view?orgId=' + this.props.parent.orgId + '&includeSuborg=' + this.props.parent.includeSuborg;
-            fetch(url, {
-                method: 'get',
-                mode: 'cors'
-            }).then(function (res) {
-                if (res.ok) {
-                    res.text().then(function (data) {
-                        _this2.setState({
-                            tableData: data["data"]
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url);
+            xhr.withCredentials = true;
+            xhr.send();
+            var _this = this;
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+                        var res = JSON.parse(xhr.responseText);
+                        _this.setState({
+                            tableData: res["data"]
                         });
-                    });
+                    } else {}
                 }
-            }).catch(function (res) {
-                console.log(res.status);
-            });
+            };
+        }
+    }, {
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps() {
+            console.log('this.props.parent = ', this.props.parent);
+            console.log('nextProps.parent = ', this.nextProps.parent);
         }
     }, {
         key: 'componentDidMount',
@@ -240,13 +274,7 @@ var AcOrgcenterForm = function (_Component) {
     return AcOrgcenterForm;
 }(_react.Component);
 
-AcOrgcenterForm.defaultProps = {
-    className: '',
-    parent: {},
-    btns: []
-};
-
-
 AcOrgcenterForm.propTypes = propTypes;
+AcOrgcenterForm.defaultProps = defaultProps;
 
 exports.default = AcOrgcenterForm;

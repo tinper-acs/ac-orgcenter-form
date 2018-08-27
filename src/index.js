@@ -1,19 +1,37 @@
 import  React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-
-const urlHost = 'http://10.6.195.142:8089';
+const urlHost = 'http://hrcloud.yyuap.com';
 const propTypes = {
     className: PropTypes.string,
-    parent:PropTypes.object, //
+    parent:(props, propName) => {
+        let _parent = props[propName];
+        if(!_parent.orgId){
+            _parent.orgId = ''
+        }
+        if(!_parent.includeSuborg){
+            _parent.includeSuborg = false
+        }
+        if(!_parent.urlHost){
+            _parent.urlHost = urlHost
+        }
+        if(!_parent.wb_at){
+            _parent.wb_at = ''
+        }
+    }, //
     btns:PropTypes.array,
 };
+const defaultProps = {
+    className: '',
+    parent: {
+        orgId: '',
+        includeSuborg: false,
+        urlHost: 'http://hrcloud.yyuap.com',
+        wb_at: ''
+    },
+    btns: []
+};
 class AcOrgcenterForm extends Component {
-    static defaultProps = {
-        className: '',
-        parent: {},
-        btns: []
-    };
     constructor(props) {
         super(props);
         this.state = {
@@ -45,15 +63,14 @@ class AcOrgcenterForm extends Component {
         // })
     }
     getDataList(){
-        // let url = 'http://10.6.195.142:8089/corehr/orgchange/position/view?orgId=c02f33880d9d4866903e237245b9e643&includeSuborg=0';
-        let url = `${urlHost}/corehr-staff-process/corehr/orgchange/position/view?orgId=${this.props.parent.orgId}&includeSuborg=${this.props.parent.includeSuborg}`;
-        fetch(url, {
+        let wb_at = '';
+        if(this.props.parent.wb_at && this.props.parent.wb_at.length>0){
+            wb_at = `&wb_at=${this.props.parent.wb_at}`
+        }
+        let url = `${this.props.parent.urlHost}/corehr-org/corehr/orgchange/position/view?orgId=${this.props.parent.orgId}&includeSuborg=${this.props.parent.includeSuborg}${wb_at}`;
+        /*fetch(url, {
             method: 'get',
             mode:'cors'
-            // headers: {
-            //     'Content-Type': 'application/json'
-            // },
-            // body: JSON.stringify(data)
         }).then((res)=>{
             if(res.ok){
                 res.text().then((data)=>{
@@ -67,7 +84,30 @@ class AcOrgcenterForm extends Component {
             }
         }).catch((res)=>{
             console.log(res.status);
-        });
+        });*/
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.withCredentials = true; // 携带跨域cookie
+        xhr.send();
+        let _this = this;
+        xhr.onreadystatechange=function () {
+            if(xhr.readyState==4){
+                if((xhr.status>=200&&xhr.status<300)||xhr.status==304){
+                    var res=JSON.parse(xhr.responseText);
+                    _this.setState(
+                        {
+                            tableData:res["data"]
+                        }
+                    );
+                }else{
+
+                }
+            }
+        };
+    }
+    componentWillReceiveProps(){
+        console.log('this.props.parent = ',this.props.parent);
+        console.log('nextProps.parent = ',this.nextProps.parent)
     }
     componentDidMount(){
         this.getDataList();
@@ -145,5 +185,6 @@ class AcOrgcenterForm extends Component {
 }
 
 AcOrgcenterForm.propTypes = propTypes;
+AcOrgcenterForm.defaultProps = defaultProps;
 
 export default AcOrgcenterForm;

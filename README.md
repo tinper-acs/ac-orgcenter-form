@@ -28,14 +28,16 @@ import '@yonyou/ac-orgcenter-form/build/ac-orgcenter-form.css';
 ## parent所有的属性
  |参数|说明|类型|默认值|
  |:--|:---:|:--:|---:|
- |orgId|组织id|string|default|
- |includeSuborg|0: 加载【合并组织】时候的【职位列表】; 1:加载【跨公司转移】时的【职位列表】|number|
+ |orgId(必填)|组织id|string|空字符|
+ |includeSuborg(必填)|false: 加载【合并组织】时候的【职位列表】; true:加载【跨公司转移】时的【职位列表】|bool|false|
+ |urlHost(可选)|接口访问的host|string|'http://hrcloud.yyuap.com'|
+ |wb_at(可选)|登录秘钥|string|空字符|
 
 ## btns所有的属性
  |参数|说明|类型|默认值|
  |:--|:---:|:--:|---:|
- |label|文字|string|default|
- |type|btns: next、last|string|
+ |label|文字|string|default|空字符|
+ |type|btns: next、last|string|空字符|
  |func|回调函数| function| --|
 
 #### 开发调试
