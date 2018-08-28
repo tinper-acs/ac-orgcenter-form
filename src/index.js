@@ -1,6 +1,7 @@
 import  React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import './index.less';
 const urlHost = 'http://hrcloud.yyuap.com';
 const propTypes = {
     className: PropTypes.string,
@@ -47,7 +48,7 @@ class AcOrgcenterForm extends Component {
     getCurrTime(){
         let curTime = new Date();
         let curDate = curTime.getFullYear()+'-'+format(curTime.getMonth()+1)+'-'+format(curTime.getDate());
-        
+
         function format(num) {
             let str = '';
             if(Number(num)<10){
@@ -56,7 +57,7 @@ class AcOrgcenterForm extends Component {
 
             return (str + num)
         }
-        
+
         return curDate
         // this.setState({
         //     currentDate: curDate

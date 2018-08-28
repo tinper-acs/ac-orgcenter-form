@@ -4,9 +4,7 @@ import { Panel } from 'bee-panel';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'bee-button';
-import './demo.less';
-import '../build/ac-input-locale.css';
-
+import './demo.scss';
 
 const CARET = <i className="uf uf-arrow-down"></i>;
 
