@@ -1,5 +1,9 @@
 ## ac-orgcenter-form
 
+## 效果
+
+![效果](http://upload-images.jianshu.io/upload_images/8194969-bef0ffc1c9e0d8d1?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ```
 $ ynpm install @yonyou/ac-orgcenter-form --save
 
@@ -14,8 +18,8 @@ import '@yonyou/ac-orgcenter-form/build/ac-orgcenter-form.css';
 ```
 
 ##效果
- 
- 
+
+
 
 ## API
 
