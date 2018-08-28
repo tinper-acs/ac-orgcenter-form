@@ -13,7 +13,7 @@ import {AcOrgcenterForm} from '@yonyou/ac-orgcenter-form';
 
 样式引入
 
-import '@yonyou/ac-orgcenter-form/build/ac-orgcenter-form.css';
+import '@yonyou/ac-orgcenter-form/dist/index.css';
 
 ```
 
