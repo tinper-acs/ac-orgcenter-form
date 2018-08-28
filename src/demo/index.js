@@ -67,7 +67,7 @@ class Demo extends Component {
                 wb_at = cookieObj.wb_at;
             }
         }
-        let urlHost = null;
+        let urlHost = '/hrcloud';
         // let urlHost = 'http://10.6.211.224:8090';
         let parent = {
             orgId:'212a6212cdbd42e9a51a8d71cfa9cc72',
