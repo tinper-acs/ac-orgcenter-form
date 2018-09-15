@@ -19,7 +19,7 @@ const propTypes = {
         if(!_parent.wb_at){
             _parent.wb_at = ''
         }
-    }, //
+    },
     btns:PropTypes.array,
 };
 const defaultProps = {
@@ -27,7 +27,7 @@ const defaultProps = {
     parent: {
         orgId: '',
         includeSuborg: false,
-        urlHost: 'http://hrcloud.yyuap.com',
+        urlHost: urlHost,
         wb_at: ''
     },
     btns: []
@@ -68,25 +68,8 @@ class AcOrgcenterForm extends Component {
         if(this.props.parent.wb_at && this.props.parent.wb_at.length>0){
             wb_at = `&wb_at=${this.props.parent.wb_at}`
         }
-        let url = `${this.props.parent.urlHost}/corehr-org/corehr/orgchange/position/view?orgId=${this.props.parent.orgId}&includeSuborg=${this.props.parent.includeSuborg}${wb_at}`;
-        /*fetch(url, {
-            method: 'get',
-            mode:'cors'
-        }).then((res)=>{
-            if(res.ok){
-                res.text().then((data)=>{
-                    this.setState(
-                        {
-                            tableData:data["data"]
-                        }
-                    );
-                    // console.log(JSON.parse(data));
-                })
-            }
-        }).catch((res)=>{
-            console.log(res.status);
-        });*/
-        var xhr = new XMLHttpRequest();
+        let url = `${this.props.parent.urlHost}/corehr-org/corehr/orgchange/position/view`;
+        let xhr = new XMLHttpRequest();
         xhr.open('GET', url);
         xhr.withCredentials = true; // 携带跨域cookie
         xhr.send();
