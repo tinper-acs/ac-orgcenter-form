@@ -90,8 +90,7 @@ class AcOrgcenterForm extends Component {
         };
     }
     componentWillReceiveProps(){
-        console.log('this.props.parent = ',this.props.parent);
-        console.log('nextProps.parent = ',this.nextProps.parent)
+
     }
     componentDidMount(){
         this.getDataList();

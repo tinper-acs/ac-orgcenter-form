@@ -1,56 +1,39 @@
 /**
  *
- * @title 多语言 Input 组件
- * @description 多语言 Input 组件 简单应用
+ * @title 应用组件名称
+ * @description 应用组件描述
  *
  */
 
 import React, { Component } from 'react';
-import AcInputLocale from '../../src/index';
-import Button from 'bee-button';
-
- class Demo1 extends Component {
-
-    constructor(props){
-        super(props)
-        this.state={
-            sysLocale:"zh-en",
-            locale:[
-                    {
-                        locale:"zh-cn",label:"中文",value:""
-                    },
-                    {
-                        locale:"zh-en",label:"英文",value:"english"
-                    },
-                    {
-                        locale:"zh-tw",label:"台湾",value:""
-                    }
-                ]
-        }
-    }
- 
-    onSave=(localeList)=>{
-        this.setState({
-            localeList
-        })
-    }
-
-    onClick = (key)=>{
-        this.setState({
-            sysLocale:key
-        })
-    }
+import Temp from '../../src/index';
+class Demo1 extends Component {
 
     render () {
-        let {locale,sysLocale} = this.state;
+      let btns = [
+        {
+          'label':'上一步',
+          'type': "last",
+          'func': function (data) {
+            console.log('----------',data)
+          }
+        },
+        {
+          'label':'下一步',
+          'type': "next",
+          'func': function (data) {
+            console.log('----------',data)
+          }
+        }
+      ];
+      let parent = {
+        orgId:1,
+        includeSuborg:false
+      };
+      let className = 'clcclclclclcl';
         return (
             <div className="demoPadding">
-                <div className="btn">
-                    <Button onClick={()=>{this.onClick("zh-tw")}}>[台湾]</Button>
-                    <Button onClick={()=>{this.onClick("zh-en")}}>[英语]</Button>
-                    <Button onClick={()=>{this.onClick("zh-cn")}}>[中文]</Button>
-                </div>
-                <AcInputLocale colors="brand" locale={sysLocale}  localeList={locale}  onSave={this.onSave}></AcInputLocale> 
+                <Temp btns={btns} parent={parent} className={className} />
             </div>
         )
     }
