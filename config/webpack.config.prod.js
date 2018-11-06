@@ -6,7 +6,6 @@ const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const nodeExternals = require('webpack-node-externals');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const baseConfig = require('./webpack.base')
@@ -15,7 +14,7 @@ module.exports = webpackMerge(baseConfig, {
   entry: {
       app: path.join(__dirname, '../src/index.js')
   },
-  externals:['react','react-dom','prop-types'],
+  externals:['react','react-dom','prop-types','tinper-bee'],
   output: {
       filename: 'index.js',
       path: path.join(__dirname, '../dist'),
@@ -52,11 +51,11 @@ module.exports = webpackMerge(baseConfig, {
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
-            options: {
-              modules: true,
-              sourceMap: true,
-              importLoader: 2
-            }
+            // options: {
+            //   modules: true,
+            //   sourceMap: true,
+            //   importLoader: 2
+            // }
           },
           "less-loader"
         ]

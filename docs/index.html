@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title></title>
+    <title>ac-orgcenter-form</title>
     <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="assets/css/bootstrap-responsive.css"/>
     <link type="text/css" rel="stylesheet" href="assets/css/pilcrow.css"/>
@@ -14,10 +14,130 @@
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span3"><ul class="nav nav-list">
+    <li class="sidebar-header-2"><a href="#ac-orgcenter-form">ac-orgcenter-form</a></li>
+    <li class="sidebar-header-2"><a href="#效果">效果</a></li>
+    <li class="sidebar-header-2"><a href="#api">API</a></li>
+    <li class="sidebar-header-2"><a href="#parent所有的属性">parent所有的属性</a></li>
+    <li class="sidebar-header-2"><a href="#btns所有的属性">btns所有的属性</a></li>
+    <li class="sidebar-header-4"><a href="#开发调试">开发调试</a></li>
 </ul>
       </div>
-      <div class="span9 main"><p>### </p>
-      </div>
+      <div class="span9 main"><h2 id="ac-orgcenter-form">ac-orgcenter-form</h2>
+<h2 id="效果">效果</h2>
+<p class="img-container"><img src="http://upload-images.jianshu.io/upload_images/8194969-bef0ffc1c9e0d8d1?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果"></p>
+<pre class="hljs"><code>$ ynpm install @yonyou/ac-orgcenter-form <span class="hljs-comment">--save</span>
+
+引入
+
+<span class="hljs-keyword">import</span> {AcOrgcenterForm} <span class="hljs-keyword">from</span> <span class="hljs-string">'@yonyou/ac-orgcenter-form'</span>;
+
+样式引入
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">'@yonyou/ac-orgcenter-form/dist/index.css'</span>;
+</code></pre><p>##效果</p>
+<h2 id="api">API</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:right">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">className</td>
+<td style="text-align:center">样式</td>
+<td style="text-align:center">string</td>
+<td style="text-align:right">default</td>
+</tr>
+<tr>
+<td style="text-align:left">parent</td>
+<td style="text-align:center">参数object</td>
+<td style="text-align:center">object</td>
+</tr>
+<tr>
+<td style="text-align:left">btns</td>
+<td style="text-align:center">操作组(如下)</td>
+<td style="text-align:center">array</td>
+<td style="text-align:right">--</td>
+</tr>
+</tbody>
+</table>
+<h2 id="parent所有的属性">parent所有的属性</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:right">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">orgId(必填)</td>
+<td style="text-align:center">组织id</td>
+<td style="text-align:center">string</td>
+<td style="text-align:right">空字符</td>
+</tr>
+<tr>
+<td style="text-align:left">includeSuborg(必填)</td>
+<td style="text-align:center">false: 加载【合并组织】时候的【职位列表】; true:加载【跨公司转移】时的【职位列表】</td>
+<td style="text-align:center">bool</td>
+<td style="text-align:right">false</td>
+</tr>
+<tr>
+<td style="text-align:left">urlHost(可选)</td>
+<td style="text-align:center">接口访问的host</td>
+<td style="text-align:center">string</td>
+<td style="text-align:right">&#39;<a href="http://hrcloud.yyuap.com&#39;">http://hrcloud.yyuap.com&#39;</a></td>
+</tr>
+<tr>
+<td style="text-align:left">wb_at(可选)</td>
+<td style="text-align:center">登录秘钥</td>
+<td style="text-align:center">string</td>
+<td style="text-align:right">空字符</td>
+</tr>
+</tbody>
+</table>
+<h2 id="btns所有的属性">btns所有的属性</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:right">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">label</td>
+<td style="text-align:center">文字</td>
+<td style="text-align:center">string</td>
+<td style="text-align:right">default</td>
+<td>空字符</td>
+</tr>
+<tr>
+<td style="text-align:left">type</td>
+<td style="text-align:center">btns: next、last</td>
+<td style="text-align:center">string</td>
+<td style="text-align:right">空字符</td>
+</tr>
+<tr>
+<td style="text-align:left">func</td>
+<td style="text-align:center">回调函数</td>
+<td style="text-align:center">function</td>
+<td style="text-align:right">--</td>
+</tr>
+</tbody>
+</table>
+<h4 id="开发调试">开发调试</h4>
+<pre class="hljs"><code>$ <span class="hljs-built_in">cd</span> ac-orgcenter-form
+$ npm install
+$ npm run dev</code></pre>      </div>
     </div>
   </div>
 
