@@ -1,12 +1,14 @@
 import  React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Table } from 'element-react';
+import 'element-theme-default';
 import PropTypes from 'prop-types';
 import './index.less';
 const urlHost = 'http://hrcloud.yyuap.com';
 const propTypes = {
-    className: PropTypes.string,
-    parent:(props, propName) => {
-        let _parent = props[propName];
+    classold_postname: PropTypes.string,
+    parent:(props, propold_postname) => {
+        let _parent = props[propold_postname];
         if(!_parent.orgId){
             _parent.orgId = ''
         }
@@ -23,7 +25,7 @@ const propTypes = {
     btns:PropTypes.array,
 };
 const defaultProps = {
-    className: '',
+    classold_postname: '',
     parent: {
         orgId: '',
         includeSuborg: false,
@@ -36,8 +38,55 @@ class AcOrgcenterForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentDate: this.getCurrTime(),
-            tableData: []
+            currentold_postcode: this.getCurrTime(),
+            tableData: [],
+          columns: [
+            {
+              label: "原职位编码",
+              prop: "old_postcode"
+            },
+            {
+              label: "原职位名称",
+              prop: "old_postname"
+            },
+            {
+              label: "新职位编码",
+              prop: "new_postcode",
+              render: (row, column, index)=>{
+                return <input type="text" value={row.new_postcode} onChange={(e)=>this.handleChange(row, 'new_postcode',e)}/>
+              }
+            },
+            {
+              label: "新职位名称",
+              prop: "new_postold_postname",
+              render: (row, column, index)=>{
+                return <input type="text" value={row.new_postold_postname} onChange={(e)=>this.handleChange(row, 'new_postold_postname',e)}/>
+              }
+            },
+            {
+              label: "所属部门",
+              prop: "deptid_showold_postname"
+            },
+            {
+              label: "创建日期",
+              prop: "currentold_postcode"
+            }
+          ],
+          data: [{
+            old_postcode: '2016-05-02',
+            old_postname: '王小虎',
+            new_postcode: '上海市普陀区金沙江路 1518 弄',
+            new_postold_postname: '上海市普陀区金沙江路 1518 弄',
+            deptid_showold_postname: '上海市普陀区金沙江路 1518 弄',
+            currentold_postcode: '上海市普陀区金沙江路 1518 弄'
+          }, {
+            old_postcode: '2016-05-02',
+            old_postname: '王小虎',
+            new_postcode: '',
+            new_postold_postname: '上海市普陀区金沙江路 1518 弄',
+            deptid_showold_postname: '上海市普陀区金沙江路 1518 弄',
+            currentold_postcode: '上海市普陀区金沙江路 1518 弄'
+          }]
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -59,9 +108,6 @@ class AcOrgcenterForm extends Component {
         }
 
         return curDate
-        // this.setState({
-        //     currentDate: curDate
-        // })
     }
     getDataList(){
         let wb_at = '';
@@ -80,7 +126,7 @@ class AcOrgcenterForm extends Component {
                     var res=JSON.parse(xhr.responseText);
                     _this.setState(
                         {
-                            tableData:res["data"]
+                            data:res["data"]
                         }
                     );
                 }else{
@@ -95,59 +141,32 @@ class AcOrgcenterForm extends Component {
     componentDidMount(){
         this.getDataList();
     }
-    handleChange(newItem,propName,e) {
-        const val = e.target.value;
-        let tableData = this.state.tableData;
-        tableData.forEach((item)=>{
-            if(item.id===newItem.id){
-                item[propName] = val
-            }
-        });
-
-        this.setState({tableData: tableData});
+    handleChange(newItem,key,e) {
+      
+      console.log(newItem);
+      const val = e.target.value;
+      newItem[key] = val;
+        this.setState({data: this.state.data});
     }
     next(call){
-        const data = this.state.tableData;
+        const data = this.state.data;
         call(data);
     }
     last(call){
-        const data = this.state.tableData;
+        const data = this.state.data;
         call(data)
     }
     render() {
         const listItems = this.props.btns;
-        const tableData = this.state.tableData;
         return (
-            <div className={this.props.className} id='ac-orgcenter-form'>
+            <div className={this.props.classold_postname} id='ac-orgcenter-form'>
                 <div className='table-box'>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>原职位编码</th>
-                            <th>原职位名称</th>
-                            <th>新职位编码</th>
-                            <th>新职位名称</th>
-                            <th>所属部门</th>
-                            <th>创建日期</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            tableData.map((item, i)=>{
-                                return (
-                                    <tr key={i}>
-                                        <td className='staff-code'>{item.old_postcode}</td>
-                                        <td>{item.old_postname}</td>
-                                        <td><input type="text" value={item.new_postcode} onChange={(e)=>this.handleChange(item, 'new_postcode',e)}/></td>
-                                        <td><input type="text" value={item.new_postname} onChange={(e)=>this.handleChange(item, 'new_postname',e)}/></td>
-                                        <td>{item.deptid_showname}</td>
-                                        <td>{this.state.currentDate}</td>
-                                    </tr>
-                                )
-                            })
-                        }
-                        </tbody>
-                    </table>
+                  <Table
+                    style={{width: '100%'}}
+                    columns={this.state.columns}
+                    maxHeight={200}
+                    data={this.state.data}
+                  />
                 </div>
                 <footer className='footer'>
                     {
