@@ -74,15 +74,6 @@ class AcOrgcenterForm extends Component {
                 {
                     label: "所属部门",
                     prop: "deptid_showold_postname"
-                },
-                {
-                    label: "创建日期",
-                    prop: "currentold_postcode",
-                    render: (row, column, index) => {
-                        return <div>
-                            {this.state.currentold_postcode}
-                        </div>
-                    }
                 }
             ],
             staffColumns: [
@@ -159,11 +150,7 @@ class AcOrgcenterForm extends Component {
         let nextPropsStr = JSON.stringify(nextprops);
         let thisPropsStr = JSON.stringify(this.props);
         if(nextPropsStr !== thisPropsStr){
-            this.setState({
-                currentold_postcode:this.getCurrTime()
-            },()=>{
-                this.getDataList();
-            })
+            this.getDataList();
         }
 
     }
