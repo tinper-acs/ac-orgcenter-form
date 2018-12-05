@@ -65,10 +65,10 @@ class AcOrgcenterForm extends Component {
                 },
                 {
                     label: "新职位名称",
-                    prop: "new_post_name",
+                    prop: "new_postname",
                     render: (row, column, index) => {
-                        return <input type="text" value={row.new_post_name}
-                                      onChange={(e) => this.handleChange(row, 'new_post_name', e)}/>
+                        return <input type="text" value={row.new_postname}
+                                      onChange={(e) => this.handleChange(row, 'new_postname', e)}/>
                     }
                 },
                 {
