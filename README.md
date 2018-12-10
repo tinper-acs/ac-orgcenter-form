@@ -34,6 +34,7 @@ import '@yonyou/ac-orgcenter-form/dist/index.css';
  |:--|:---:|:--:|---:|
  |orgId(必填)|组织id|string|空字符|
  |includeSuborg(必填)|false: 加载【合并组织】时候的【职位列表】; true:加载【跨公司转移】时的【职位列表】|bool|false|
+ |isStaff(必填)|false:【职位列表】; true:【员工信息】|bool|false|
  |urlHost(可选)|接口访问的host|string|'http://hrcloud.yyuap.com'|
  |wb_at(可选)|登录秘钥|string|空字符|
 
